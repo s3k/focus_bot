@@ -8,7 +8,7 @@ RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
 
 namespace :db do
-  db_config       = YAML::load(File.open('config/database.yml'))["test"]
+  db_config = YAML::load(File.open('config/database.yml'))["test"]
   db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
 
   desc "Create the database"
@@ -58,10 +58,10 @@ namespace :g do
 
     File.open(path, 'w') do |file|
       file.write <<-EOF
-class #{migration_class} < ActiveRecord::Migration
-  def self.up
+class #{migration_class} < ActiveRecord::Migration[5.0]
+  def up
   end
-  def self.down
+  def down
   end
 end
       EOF

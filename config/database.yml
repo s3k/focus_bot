@@ -4,4 +4,6 @@ test:
   host: 'localhost'
   adapter: 'postgresql'
   encoding: utf-8
-  database: 'test'
+  database: 'snap_feed'
+  username: "docker"
+  password: "docker"
