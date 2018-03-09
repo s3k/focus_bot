@@ -5,4 +5,5 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 # Specify your gem's dependencies in focus_bot.gemspec
 gemspec
 
-gem 'telegram-bot-ruby'
+gem "telegram-bot-ruby"
+gem "dotenv"
