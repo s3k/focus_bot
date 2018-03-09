@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "focus_bot/version"
+require "snap_list/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "focus_bot"
-  spec.version       = FocusBot::VERSION
+  spec.name          = "snap_list"
+  spec.version       = SnapList::VERSION
   spec.authors       = ["Alex"]
   spec.email         = ["s3ek.mail@gmail.com"]
 
