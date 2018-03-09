@@ -8,7 +8,8 @@ RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
 
 namespace :db do
-  db_config = YAML::load(File.open('config/database.yml'))["test"]
+  env = ENV["RACK_ENV"] || "development"
+  db_config = YAML::load(File.open('config/database.yml'))[env]
   db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
 
   desc "Create the database"
