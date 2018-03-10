@@ -9,3 +9,4 @@ gem "telegram-bot-ruby"
 gem "dotenv"
 gem "pg"
 gem 'activerecord', '~> 5.0', '>= 5.0.0.1'
+gem "aasm", "~> 4.12"
