@@ -6,8 +6,10 @@ require "active_record"
 
 require "initializers/active_record_connection.rb"
 require "snap_list/version"
-require "snap_list/handler"
+require "snap_list/handler_base"
+require "snap_list/callback_handler"
 require "snap_list/client"
+
 
 Dir[File.join(__dir__, "/model/**/*.rb")].each do |file|
   require file

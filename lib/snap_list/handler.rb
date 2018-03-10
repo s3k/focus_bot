@@ -25,7 +25,10 @@ module SnapList
       send(resp, text: "#{name}\n\n#{tasks}", parse_mode: :markdown, reply_markup: kb)
     end
 
+    #
     # Commands
+    #
+
     def message_handler(resp)
       user = User.find_by(tg_id: resp.message.from.id)
       name = resp.message.from.first_name
@@ -52,7 +55,10 @@ module SnapList
       end
     end
 
-    # Action results
+    #
+    # User input handler
+    #
+
     def context_handler(resp)
       user = User.find_by(tg_id: resp.message.from.id)
 
@@ -72,7 +78,10 @@ module SnapList
       end
     end
 
+    #
     # Btn actions
+    #
+
     def cb_handler(resp)
       user = User.find_by(tg_id: resp.message.from.id)
 
@@ -91,7 +100,7 @@ module SnapList
         end
 
         user.update_attributes(context: :edit_task, payload: $1)
-        send(resp, text: "Как назвать задачу?", reply_markup: kb)
+        send(resp, text: "Отправьте название задачи", reply_markup: kb)
 
       when /edit\/([0-9]*)/
         kb = markup do
