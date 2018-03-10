@@ -7,6 +7,9 @@ class User < ActiveRecord::Migration[5.0]
       t.string :last_name
       t.string :language_code
       t.boolean :is_bot
+      t.string :context
+
+      t.timestamps
     end
 
     add_index :users, :username
