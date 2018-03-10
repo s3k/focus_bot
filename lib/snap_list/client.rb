@@ -3,10 +3,10 @@ module SnapList
     attr_accessor :token
 
     ## TODO:
-    # 1. Продумать CRUD меню
-    # 2. Придумать группы
-    # 3. Добавить AASM
-    # 4. Добавить ActiveRecord + DB
+    # [] Продумать CRUD меню
+    # [] Придумать группы
+    # [] Добавить AASM
+    # [x] Добавить ActiveRecord + DB
 
     def initialize(opt={})
       @token = opt[:token]
