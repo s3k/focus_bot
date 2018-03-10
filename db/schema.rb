@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310011440) do
+ActiveRecord::Schema.define(version: 20180310125002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "tasks", id: :serial, force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.integer "tg_id"
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "language_code"
+    t.boolean "is_bot"
+    t.index ["tg_id"], name: "index_users_on_tg_id", unique: true
+    t.index ["username"], name: "index_users_on_username"
   end
 
 end
