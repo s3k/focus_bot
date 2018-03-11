@@ -6,8 +6,11 @@ require "active_record"
 
 require "initializers/active_record_connection.rb"
 require "snap_list/version"
-require "snap_list/handler_base"
-require "snap_list/callback_handler"
+
+require "snap_list/handler/base"
+require "snap_list/handler/callback"
+require "snap_list/handler/message"
+require "snap_list/handler/inline"
 require "snap_list/client"
 
 

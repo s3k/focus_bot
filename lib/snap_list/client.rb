@@ -13,20 +13,20 @@ module SnapList
     private
 
     def event_handler(resp)
-      load "#{__dir__}/handler_base.rb"
-      load "#{__dir__}/callback_handler.rb"
-      load "#{__dir__}/inline_handler.rb"
-      load "#{__dir__}/message_handler.rb"
+      # load "#{__dir__}/handler/base.rb"
+      # load "#{__dir__}/handler/callback.rb"
+      # load "#{__dir__}/handler/inline.rb"
+      # load "#{__dir__}/handler/message.rb"
 
       case resp.message
       when Telegram::Bot::Types::Message
-        MessageHandler.new(resp).call
+        Handler::Message.new(resp).call
 
       when Telegram::Bot::Types::InlineQuery
-        InlineHandler.new(resp).call
+        Handler::Inline.new(resp).call
 
       when Telegram::Bot::Types::CallbackQuery
-        CallbackHandler.new(resp).call
+        Handler::Callback.new(resp).call
 
       end
     end

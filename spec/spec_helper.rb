@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "focus_bot"
+require "snap_list"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
