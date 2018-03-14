@@ -13,8 +13,8 @@ module SnapList
         user.tasks
       end
 
-      def create_user(resp)
-        tg_user = resp.message.from.to_h
+      def create_user
+        tg_user = @resp.message.from.to_h
         tg_user[:tg_id] = user[:id]
         tg_user.delete(:id)
 
@@ -71,9 +71,12 @@ module SnapList
       end
 
       def send(opt={})
-        case @resp.message
-        when Telegram::Bot::Types::CallbackQuery
+        if @resp.message.is_a? Telegram::Bot::Types::CallbackQuery
+          qid = @resp.message.id
           chat_id = @resp.message.message.chat.id
+          answer = { callback_query_id: qid }
+
+          @resp.bot.api.answer_callback_query(answer)
         else
           chat_id = @resp.message.chat.id
         end
