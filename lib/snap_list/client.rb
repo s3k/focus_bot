@@ -4,6 +4,10 @@ module SnapList
 
     def initialize(opt={})
       @token = opt[:token]
+
+      @command = load_config("command")
+      @context = load_config("context")
+      @callback = load_config("callback")
     end
 
     def call
@@ -13,22 +17,36 @@ module SnapList
     private
 
     def event_handler(resp)
-      load "#{__dir__}/handler/base.rb"
-      load "#{__dir__}/handler/callback.rb"
-      load "#{__dir__}/handler/inline.rb"
-      load "#{__dir__}/handler/message.rb"
-
       case resp.message
       when Telegram::Bot::Types::Message
-        Handler::Message.new(resp).call
-
-      when Telegram::Bot::Types::InlineQuery
-        Handler::Inline.new(resp).call
+        handle(resp, @command)
+        handle(resp, @context)
 
       when Telegram::Bot::Types::CallbackQuery
-        Handler::Callback.new(resp).call
+        handle(resp, @callback)
 
       end
+    end
+
+    def handle(resp, handler)
+      if resp.message.is_a? Telegram::Bot::Types::CallbackQuery
+        cmd = resp.message.data
+      else
+        cmd = resp.message.text
+      end
+
+      return nil unless handler["bind"]
+
+      handler["bind"].each do |binding, service|
+        if cmd == binding
+          name, method = service.split("#")
+          name.constantize.new(resp).send(method)
+        end
+      end
+    end
+
+    def load_config(name)
+      YAML.load_file("app/handler/#{name}.yml")
     end
 
     def bot_listen!

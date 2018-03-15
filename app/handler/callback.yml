@@ -1,0 +1,8 @@
+bind:
+  task/ask/create: TaskService#ask_create
+  common/cancel: CommonService#cancel
+  #   edit/not_done/:id: MyService#update
+  #   edit/post/:id: MyService#update
+  #   edit/:id: MyService#update
+  #   delete/:id: MyService#delete
+

@@ -1,0 +1,2 @@
+bind:
+  task/create: TaskService#create
