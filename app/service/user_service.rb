@@ -1,4 +1,4 @@
-class UserService < SnapList::Handler
+class UserService < ApplicationHandler
   def start
     user = create_user
 
@@ -21,8 +21,8 @@ class UserService < SnapList::Handler
       ]
     end
 
-    result = tasks.order(created_at: :desc).map{ |task| 
-      task.done ? "#{diamond} #{task.name}" : "#{square} #{task.name}" 
+    result = user.tasks.order(created_at: :desc).map{ |task|
+      task.done ? "#{diamond} #{task.name}" : "#{square} #{task.name}"
     }.join("\n")
 
     say(text: "#{name}\n\n#{result}", parse_mode: :markdown, reply_markup: kb)

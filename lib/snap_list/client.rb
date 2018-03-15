@@ -37,6 +37,16 @@ module SnapList
 
       return nil unless handler["bind"]
 
+      if handler["context"]
+        ctx = handler["context"]
+        model = ctx["model"]
+        user_id = ctx["user_id"]
+        command = ctx["command"]
+        opt = { user_id => resp.message.from.id }
+
+        cmd = model.constantize.find_by(opt)&.send(command)
+      end
+
       handler["bind"].each do |binding, service|
         if cmd == binding
           name, method = service.split("#")
