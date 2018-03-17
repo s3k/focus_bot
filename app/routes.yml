@@ -1,0 +1,13 @@
+command:
+  /start: UserService#start
+  /list: UserService#list
+
+context:
+  task/create: TaskService#create
+  task/update: TaskService#update
+
+callback:
+  task/ask/create: TaskService#ask_create
+  task/list: TaskService#list
+  task/select/item: TaskService#select
+  common/cancel: CommonService#cancel

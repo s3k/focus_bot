@@ -1,0 +1,4 @@
+mapper:
+  model: User
+  user_id: tg_id
+  command: context

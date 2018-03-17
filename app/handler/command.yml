@@ -1,3 +1,0 @@
-bind:
-  /start: UserService#start
-  /list: UserService#list

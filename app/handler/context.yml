@@ -1,8 +1,0 @@
-context:
-  model: User
-  user_id: tg_id
-  command: context
-
-bind:
-  task/create: TaskService#create
-

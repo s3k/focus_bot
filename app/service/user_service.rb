@@ -15,8 +15,8 @@ class UserService < ApplicationHandler
     square = "\xE2\x97\xBD"
 
     kb = markup do
-      [ [button(text: "Добавить", callback_data: "new_task"),
-         button(text: "Изменить", callback_data: "edit_tasks")],
+      [ [button(text: "Добавить", callback_data: "task/ask/create"),
+         button(text: "Изменить", callback_data: "task/list")],
       [ button(text: "Готово", callback_data: "done")],
       ]
     end
