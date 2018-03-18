@@ -5,7 +5,8 @@ class TaskService < ApplicationHandler
     end
 
     user.update_attributes(context: "task/create", payload: nil)
-    say(text: "*Как назвать задачу?*", reply_markup: kb, parse_mode: :markdown)
+    say(text: "*Как назвать задачу?*\nПросто отправьте мне название задачи.", 
+        reply_markup: kb, parse_mode: :markdown)
   end
 
   def create
@@ -67,7 +68,7 @@ class TaskService < ApplicationHandler
     end
 
     user.update_attributes(context: "task/update", payload: params[:id])
-    say(text: "*Как назвать задачу?*", reply_markup: kb, parse_mode: :markdown)
+    say(text: "*Как назвать задачу?*\nПросто отправьте как переименовать задачу.", reply_markup: kb, parse_mode: :markdown)
   end
 
   def update
