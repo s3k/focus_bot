@@ -12,7 +12,12 @@ namespace :db do
   env = ENV["RACK_ENV"] || "development"
   config = ERB.new File.new("config/database.yml").read
   db_config = YAML::load(config.result)[env]
-  db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
+
+  if db_config.is_a? String
+    db_config_admin = {}
+  else
+    db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
+  end
 
   desc "Create the database"
   task :create do
