@@ -2,6 +2,7 @@ require "bundler/gem_tasks"
 require "rspec/core/rake_task"
 require "active_record"
 require "yaml"
+require "erb"
 
 RSpec::Core::RakeTask.new(:spec)
 
