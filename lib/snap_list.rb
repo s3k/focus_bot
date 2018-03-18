@@ -1,7 +1,8 @@
 require "pp"
 require "yaml"
-require 'dotenv/load'
-require 'telegram/bot'
+require "erb"
+require "dotenv/load"
+require "telegram/bot"
 require "active_record"
 
 require "initializers/active_record_connection.rb"
