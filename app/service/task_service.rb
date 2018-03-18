@@ -30,6 +30,11 @@ class TaskService < ApplicationHandler
     notify_result("Готово")
   end
 
+  def not_done
+    user.tasks.where(id: params[:id]).first&.update_attributes(done: false)
+    notify_result("Готово")
+  end
+
   def list
     kb = markup do
       user.tasks.map{ |task|
@@ -40,12 +45,42 @@ class TaskService < ApplicationHandler
     say(text: "*Выберите таск:*", reply_markup: kb, parse_mode: :markdown)
   end
 
+  def change
+    id = params[:id]
+
+    kb = markup do
+      [
+        button(text: "Отменить выполнение", callback_data: "task/not_done/#{id}"),
+        button(text: "Редактировать", callback_data: "task/ask/update/#{id}"),
+        button(text: "Удалить", callback_data: "task/delete/#{id}"),
+        button(text: "Отмена", callback_data: "common/cancel")
+      ]
+    end
+
+    task = user.tasks.find_by(id: id)
+    say(text: "*Таск:* #{task.name}", reply_markup: kb, parse_mode: :markdown)
+  end
+
+  def ask_update
+    kb = markup do
+      [ button(text: "Отмена", callback_data: "common/cancel") ]
+    end
+
+    user.update_attributes(context: "task/update", payload: params[:id])
+    say(text: "*Как назвать задачу?*", reply_markup: kb, parse_mode: :markdown)
+  end
+
   def update
     user.tasks.where(id: user.payload).first
       .update_attributes(name: @resp.message.text)
     user.update_attributes(context: nil, payload: nil)
 
     notify_result("Задача обновлена")
+  end
+
+  def delete
+    user.tasks.where(id: params[:id]).first&.delete
+    notify_result("Таск удален")
   end
 
   private

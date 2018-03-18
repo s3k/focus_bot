@@ -12,4 +12,8 @@ callback:
   task/select/item: TaskService#select
   task/ask/done: TaskService#ask_done
   task/done/:id: TaskService#done
+  task/change/:id: TaskService#change
+  task/ask/update/:id: TaskService#ask_update
+  task/not_done/:id: TaskService#not_done
+  task/delete/:id: TaskService#delete
   common/cancel: CommonService#cancel
