@@ -14,3 +14,10 @@ development:
 test:
   <<: *setup
   database: 'snap_feed_test'
+
+production:
+  host: 'dokku-postgres-db'
+  adapter: 'postgresql'
+  encoding: utf-8
+  database: 'production'
+  username: "postgres"
