@@ -10,7 +10,7 @@ task :default => :spec
 namespace :db do
   env = ENV["RACK_ENV"] || "development"
   config = ERB.new File.new("config/database.yml").read
-  db_config = YAML::load(config)[env]
+  db_config = YAML::load(config.result)[env]
   db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
 
   desc "Create the database"
