@@ -15,7 +15,7 @@ module SnapList
     def bot_listen!
       Telegram::Bot::Client.run(@token, logger: Logger.new($stderr)) do |bot|
         bot.listen do |message|
-          resp = Struct.new(:bot, :message).new(bot, message)
+          resp = Struct.new(:bot, :message, :params).new(bot, message, {})
           event_handler(resp)
         end
       end
@@ -52,7 +52,10 @@ module SnapList
       end
 
       routes[type.to_s].each do |binding, service|
-        if cmd == binding
+        router = Router.new(cmd, binding)
+
+        if router.match?
+          resp.params = router.params
           name, method = service.split("#")
           name.constantize.new(resp).send(method)
         end

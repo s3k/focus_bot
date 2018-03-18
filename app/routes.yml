@@ -10,4 +10,6 @@ callback:
   task/ask/create: TaskService#ask_create
   task/list: TaskService#list
   task/select/item: TaskService#select
+  task/ask/done: TaskService#ask_done
+  task/done/:id: TaskService#done
   common/cancel: CommonService#cancel

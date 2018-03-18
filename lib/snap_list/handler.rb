@@ -4,26 +4,8 @@ module SnapList
       @resp = resp
     end
 
-    def bind(pattern)
-      route = @resp.message.data.split("/")
-      pattern = pattern.split("/")
-
-      if route.count == pattern.count
-        params = []
-
-        match_result = pattern.each_with_index.map do |x, i|
-          result = (x == route[i] || x[0] == ":")
-          params << route[i] if x[0] == ":" && result # select only params
-          result
-        end
-
-        if match_result.uniq == [true]
-          puts "--\nBinding: #{pattern} \nRoute: #{route} \nParams: #{params}\n--"
-          @bind_result = yield *params
-        end
-      end
-
-      return
+    def params
+      @resp.params
     end
 
     def say(opt={})

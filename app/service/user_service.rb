@@ -17,7 +17,7 @@ class UserService < ApplicationHandler
     kb = markup do
       [ [button(text: "Добавить", callback_data: "task/ask/create"),
          button(text: "Изменить", callback_data: "task/list")],
-      [ button(text: "Готово", callback_data: "done")],
+      [ button(text: "Готово", callback_data: "task/ask/done")],
       ]
     end
 

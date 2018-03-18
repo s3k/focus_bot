@@ -7,6 +7,7 @@ require "active_record"
 require "initializers/active_record_connection.rb"
 require "snap_list/version"
 
+require "snap_list/router"
 require "snap_list/handler"
 require "snap_list/client"
 
