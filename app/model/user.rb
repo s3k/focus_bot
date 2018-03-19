@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :tasks
-  # has_many :goals
+  has_and_belongs_to_many :groups
+
+  def tasks
+    groups.where(id: current_group_id).first.tasks
+  end
 end

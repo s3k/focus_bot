@@ -1,6 +1,5 @@
 class Task < ActiveRecord::Base
-  belongs_to :user
-  # belongs_to :goal
+  belongs_to :group
 
   scope :not_done, -> { where(done: [false, nil]) }
 end

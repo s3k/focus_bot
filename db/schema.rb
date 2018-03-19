@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310165837) do
+ActiveRecord::Schema.define(version: 20180320001210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.index ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id"
+  end
 
   create_table "tasks", id: :serial, force: :cascade do |t|
     t.integer "user_id"
@@ -23,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180310165837) do
     t.datetime "created_at", default: "2018-03-10 13:11:07", null: false
     t.datetime "updated_at", default: "2018-03-10 13:11:07", null: false
     t.boolean "done"
+    t.integer "group_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -36,6 +49,7 @@ ActiveRecord::Schema.define(version: 20180310165837) do
     t.string "payload"
     t.datetime "created_at", default: "2018-03-10 13:11:07", null: false
     t.datetime "updated_at", default: "2018-03-10 13:11:07", null: false
+    t.integer "current_group_id"
     t.index ["tg_id"], name: "index_users_on_tg_id", unique: true
     t.index ["username"], name: "index_users_on_username"
   end
