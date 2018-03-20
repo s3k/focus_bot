@@ -38,7 +38,7 @@ class TaskService < ApplicationHandler
 
   def list
     kb = markup do
-      user.tasks.map{ |task|
+      user.tasks.order(created_at: :desc).map{ |task|
         button(text: task.name, callback_data: "task/change/#{task.id}")
       }.append( button(text: "Отмена", callback_data: "common/cancel") )
     end
