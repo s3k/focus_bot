@@ -1,6 +1,6 @@
 command:
   /start: UserService#start
-  /list: UserService#list
+  /task_list: UserService#list
   /group_list: GroupService#list
 
 context:
