@@ -83,10 +83,4 @@ class TaskService < ApplicationHandler
     user.tasks.where(id: params[:id]).first&.delete
     notify_result("Таск удален")
   end
-
-  private
-
-  def notify_result(status)
-    UserService.new(@resp).list("*#{status}. Текущий список дел:*")
-  end
 end

@@ -5,15 +5,19 @@ class User < ActiveRecord::Base
     current_group.tasks
   end
 
-  private
-
   def current_group
-    if current_group_id
-      groups.where(id: current_group_id).first
+    if current_group_id && current_group_id != 0
+      groups.find_by(id: current_group_id)
     else
       init_default_group
     end
   end
+
+  def default_group
+    groups.find_by(id: current_group_id)
+  end
+
+  private
 
   def init_default_group
     if default_group_id.blank?
@@ -23,6 +27,6 @@ class User < ActiveRecord::Base
       return group
     end
 
-    groups.where(id: default_group_id).first
+    groups.find_by(id: default_group_id)
   end
 end
