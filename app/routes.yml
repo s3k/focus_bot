@@ -1,7 +1,7 @@
 command:
   /start: UserService#start
   /list: UserService#list
-  /groupList: GroupService#list
+  /group_list: GroupService#list
 
 context:
   task/create: TaskService#create
