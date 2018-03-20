@@ -10,9 +10,14 @@ class UserService < ApplicationHandler
     say(text: text, reply_markup: kb)
   end
 
-  def list(name="*Список дел:*")
+  def list(name="*Список дел*")
     diamond = "\xF0\x9F\x94\xB9"
     square = "\xE2\x97\xBD"
+
+    gname = user.current_group.name
+    gname = "По умолчанию" if user.current_group.id == user.default_group_id
+
+    name += "\nГруппа: #{gname}"
 
     kb = markup do
       [ [button(text: "Добавить", callback_data: "task/ask/create"),

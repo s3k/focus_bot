@@ -8,6 +8,6 @@ class ApplicationHandler < SnapList::Handler
   end
 
   def notify_result(status)
-    UserService.new(@resp).list("*#{status}. Текущий список дел:*")
+    UserService.new(@resp).list("*#{status}. Список дел*")
   end
 end

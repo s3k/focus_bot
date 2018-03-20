@@ -18,7 +18,7 @@ class TaskService < ApplicationHandler
 
   def ask_done
     kb = markup do
-      user.tasks.not_done.map{ |task|
+      user.tasks.not_done.order(created_at: :desc).map{ |task|
         button(text: task.name, callback_data: "task/done/#{task.id}")
       }.append( button(text: "Отмена", callback_data: "common/cancel") )
     end
