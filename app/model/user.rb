@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
 
   def default_group
-    groups.find_by(id: current_group_id)
+    groups.find_by(id: default_group_id)
   end
 
   private
