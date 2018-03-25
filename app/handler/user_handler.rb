@@ -1,4 +1,4 @@
-class UserService < ApplicationHandler
+class UserHandler < ApplicationHandler
   def start
     user = create_user
 

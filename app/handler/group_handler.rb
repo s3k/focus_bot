@@ -1,4 +1,4 @@
-class GroupService < ApplicationHandler
+class GroupHandler < ApplicationHandler
   def list
     kb = markup do
       user.groups.map do |group|

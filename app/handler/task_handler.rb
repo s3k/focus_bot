@@ -1,4 +1,4 @@
-class TaskService < ApplicationHandler
+class TaskHandler < ApplicationHandler
   def ask_create
     kb = markup do
       [ button(text: "Отмена", callback_data: "common/cancel") ]

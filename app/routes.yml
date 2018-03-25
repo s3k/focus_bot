@@ -1,28 +1,28 @@
 command:
-  /start: UserService#start
-  /task_list: UserService#list
-  /group_list: GroupService#list
+  /start: UserHandler#start
+  /task_list: UserHandler#list
+  /group_list: GroupHandler#list
 
 context:
-  task/create: TaskService#create
-  task/update: TaskService#update
-  group/create: GroupService#create
+  task/create: TaskHandler#create
+  task/update: TaskHandler#update
+  group/create: GroupHandler#create
 
 callback:
-  task/ask/create: TaskService#ask_create
-  task/list: TaskService#list
-  task/select/item: TaskService#select
-  task/ask/done: TaskService#ask_done
-  task/done/:id: TaskService#done
-  task/change/:id: TaskService#change
-  task/ask/update/:id: TaskService#ask_update
-  task/not_done/:id: TaskService#not_done
-  task/delete/:id: TaskService#delete
+  task/ask/create: TaskHandler#ask_create
+  task/list: TaskHandler#list
+  task/select/item: TaskHandler#select
+  task/ask/done: TaskHandler#ask_done
+  task/done/:id: TaskHandler#done
+  task/change/:id: TaskHandler#change
+  task/ask/update/:id: TaskHandler#ask_update
+  task/not_done/:id: TaskHandler#not_done
+  task/delete/:id: TaskHandler#delete
 
-  group/list: GroupService#list
-  group/ask/create: GroupService#ask_create
-  group/ask/delete: GroupService#ask_delete
-  group/delete/:id: GroupService#delete
-  group/set_active/:id: GroupService#set_active
+  group/list: GroupHandler#list
+  group/ask/create: GroupHandler#ask_create
+  group/ask/delete: GroupHandler#ask_delete
+  group/delete/:id: GroupHandler#delete
+  group/set_active/:id: GroupHandler#set_active
 
-  common/cancel: CommonService#cancel
+  common/cancel: CommonHandler#cancel

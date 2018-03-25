@@ -1,5 +1,3 @@
-# config/database.yml
-
 setup: &setup
   host: 'localhost'
   adapter: 'postgresql'

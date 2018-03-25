@@ -1,12 +1,5 @@
 source "https://rubygems.org"
 
-# git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
-
-# Specify your gem's dependencies in snap_list.gemspec
-gemspec
-
-gem "telegram-bot-ruby"
+gem "telegraph-framework"
 gem "dotenv"
-gem "pg"
-gem 'activerecord', '~> 5.0', '>= 5.0.0.1'
-gem "aasm", "~> 4.12"
+gem "rspec"

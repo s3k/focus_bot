@@ -1,4 +1,4 @@
-class ApplicationHandler < SnapList::Handler
+class ApplicationHandler < Telegraph::Handler
 
   private
 
@@ -8,6 +8,6 @@ class ApplicationHandler < SnapList::Handler
   end
 
   def notify_result(status)
-    UserService.new(@resp).list("*#{status}. Список дел*")
+    UserHandler.new(@resp).list("*#{status}. Список дел*")
   end
 end
